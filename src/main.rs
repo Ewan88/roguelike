@@ -41,6 +41,7 @@ impl State {
         let mut rng = RandomNumberGenerator::new();
         let map_builder = MapBuilder::new(&mut rng);
         spawn_player(&mut ecs, map_builder.player_start);
+        spawn_amulet_of_yala(&mut ecs, map_builder.amulet_start);
         map_builder
             .rooms
             .iter()
@@ -82,19 +83,15 @@ impl State {
             BLACK,
             "Don't worry, you can always try again with a new hero.",
         );
-        ctx.print_color_centered(
-            9,
-            YELLOW,
-            BLACK,
-            "Press 1 to play again.",
-        );
+        ctx.print_color_centered(9, YELLOW, BLACK, "Press 1 to play again.");
 
-        if let Some(VirtualKeyCode::Key1) = ctx.key  {
+        if let Some(VirtualKeyCode::Key1) = ctx.key {
             self.ecs = World::default();
             self.resources = Resources::default();
             let mut rng = RandomNumberGenerator::new();
             let map_builder = MapBuilder::new(&mut rng);
             spawn_player(&mut self.ecs, map_builder.player_start);
+            spawn_amulet_of_yala(&mut self.ecs, map_builder.amulet_start);
             map_builder
                 .rooms
                 .iter()
