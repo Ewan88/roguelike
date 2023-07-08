@@ -55,5 +55,4 @@ pub fn spawn_amulet_of_yala(ecs: &mut World, pos: Point) {
         },
         Name("Amulet of Yala".to_string()),
     ));
-    println!("Amulet of Yala has been spawned")
 }
