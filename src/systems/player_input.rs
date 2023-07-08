@@ -14,18 +14,18 @@ pub fn player_input(
 
     if let Some(key) = key {
         let delta = match key {
-            VirtualKeyCode::Left
-            | VirtualKeyCode::A
-            | VirtualKeyCode::Numpad4 => Point::new(-1, 0),
-            VirtualKeyCode::Right
-            | VirtualKeyCode::D
-            | VirtualKeyCode::Numpad6 => Point::new(1, 0),
-            VirtualKeyCode::Up
-            | VirtualKeyCode::W
-            | VirtualKeyCode::Numpad8 => Point::new(0, -1),
-            VirtualKeyCode::Down
-            | VirtualKeyCode::S
-            | VirtualKeyCode::Numpad2 => Point::new(0, 1),
+            VirtualKeyCode::Left | VirtualKeyCode::A | VirtualKeyCode::Numpad4 => {
+                Point::new(-1, 0)
+            }
+            VirtualKeyCode::Right | VirtualKeyCode::D | VirtualKeyCode::Numpad6 => {
+                Point::new(1, 0)
+            }
+            VirtualKeyCode::Up | VirtualKeyCode::W | VirtualKeyCode::Numpad8 => {
+                Point::new(0, -1)
+            }
+            VirtualKeyCode::Down | VirtualKeyCode::S | VirtualKeyCode::Numpad2 => {
+                Point::new(0, 1)
+            }
             VirtualKeyCode::Numpad7 => Point::new(-1, -1), // NW
             VirtualKeyCode::Numpad9 => Point::new(1, -1),  // NE
             VirtualKeyCode::Numpad1 => Point::new(-1, 1),  // SW
