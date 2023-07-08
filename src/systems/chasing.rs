@@ -10,7 +10,7 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
     let mut positions = <(Entity, &Point, &Health)>::query();
     let mut player = <(&Point, &Player)>::query();
 
-    let player_pos = player.iter(ecs).nth(0).unwrap().0;
+    let player_pos = player.iter(ecs).next().unwrap().0;
     let player_idx = map_idx(player_pos.x, player_pos.y);
 
     let search_targets = vec![player_idx];
@@ -27,7 +27,8 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
             } else {
                 *player_pos
             };
-            let attacked = false;
+
+            let mut attacked = false;
             positions
                 .iter(ecs)
                 .filter(|(_, target_pos, _)| **target_pos == destination)
@@ -46,6 +47,7 @@ pub fn chasing(#[resource] map: &Map, ecs: &SubWorld, commands: &mut CommandBuff
                             },
                         ));
                     }
+                    attacked = true;
                 });
             if !attacked {
                 commands.push((
