@@ -2,7 +2,7 @@
 
 A dungeon-crawler with procedurally generated levels, enemies of increasing difficulty, and turn-based movement.
 
-The land is beset by evil pouring forth from the dungeon. Our protagonist seeks the powerful Amulet of Yara to stem the tide.
+The land is beset by evil pouring forth from the dungeon. Our protagonist seeks the powerful Amulet of Yala to stem the tide.
 
 ## Game Loop
 
@@ -20,7 +20,7 @@ The land is beset by evil pouring forth from the dungeon. Our protagonist seeks 
 4. Add a health system and a combat system that uses it
 5. Add healing potions
 6. Dispaly a "game over" screen when the player dies
-7. Add the Amulet of Yara to the level and let the player win by reaching it
+7. Add the Amulet of Yala to the level and let the player win by reaching it
 
 ## Stretch Goals
 
