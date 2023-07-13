@@ -1,5 +1,5 @@
-use crate::prelude::*;
 use super::MapArchitect;
+use crate::prelude::*;
 pub struct DrunkardsWalkArchitect {}
 
 const STAGGER_DISTANCE: usize = 400;
@@ -14,11 +14,19 @@ impl MapArchitect for DrunkardsWalkArchitect {
             monster_spawns: Vec::new(),
             player_start: Point::zero(),
             amulet_start: Point::zero(),
+            theme: super::themes::DungeonTheme::new(),
         };
         mb.fill(TileType::Wall);
         let center = Point::new(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
         self.drunkard(&center, rng, &mut mb.map);
-        while mb.map.tiles.iter().filter(|t| **t == TileType::Floor).count() < DESIRED_FLOOR {
+        while mb
+            .map
+            .tiles
+            .iter()
+            .filter(|t| **t == TileType::Floor)
+            .count()
+            < DESIRED_FLOOR
+        {
             self.drunkard(
                 &Point::new(rng.range(0, SCREEN_WIDTH), rng.range(0, SCREEN_HEIGHT)),
                 rng,

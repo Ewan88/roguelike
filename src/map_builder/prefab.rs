@@ -1,6 +1,7 @@
 use crate::prelude::*;
 
-const FORTRESS: (&str, i32, i32) = ("
+const FORTRESS: (&str, i32, i32) = (
+    "
 ............
 ...######...
 ...#....#...
@@ -12,11 +13,14 @@ const FORTRESS: (&str, i32, i32) = ("
 ...#....#...
 ...######...
 ............
-", 12, 11);
+",
+    12,
+    11,
+);
 
 pub fn apply_prefab(mb: &mut MapBuilder, rng: &mut RandomNumberGenerator) {
     let mut placement = None;
-    
+
     let dijkstra_map = DijkstraMap::new(
         SCREEN_WIDTH,
         SCREEN_HEIGHT,
@@ -52,12 +56,14 @@ pub fn apply_prefab(mb: &mut MapBuilder, rng: &mut RandomNumberGenerator) {
     }
 
     if let Some(placement) = placement {
-        let string_vec: Vec<char> = FORTRESS.0
-            .chars().filter(|a| *a != '\r' && *a != '\n')
+        let string_vec: Vec<char> = FORTRESS
+            .0
+            .chars()
+            .filter(|a| *a != '\r' && *a != '\n')
             .collect();
         let mut i = 0;
-        for ty in placement.y .. placement.y + FORTRESS.2 {
-            for tx in placement.x .. placement.x + FORTRESS.1 {
+        for ty in placement.y..placement.y + FORTRESS.2 {
+            for tx in placement.x..placement.x + FORTRESS.1 {
                 let idx = map_idx(tx, ty);
                 let c = string_vec[i];
                 match c {
