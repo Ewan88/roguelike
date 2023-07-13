@@ -78,3 +78,6 @@ pub struct ProvidesHealing {
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct ProvidesDungeonMap;
+
+#[derive(Clone, Copy, Debug, PartialEq)]
+pub struct Carried(pub Entity);
