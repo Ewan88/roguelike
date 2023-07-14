@@ -13,7 +13,7 @@ pub fn map_render(
     let mut draw_batch = DrawBatch::new();
     draw_batch.target(0);
 
-    let player_fov = fov.iter(ecs).next().unwrap();
+    let player_fov = fov.iter(ecs).nth(0).unwrap();
 
     for y in camera.top_y..=camera.bottom_y {
         for x in camera.left_x..camera.right_x {
@@ -21,23 +21,16 @@ pub fn map_render(
             let offset = Point::new(camera.left_x, camera.top_y);
             let idx = map_idx(x, y);
             if map.in_bounds(pt)
-                && player_fov.visible_tiles.contains(&pt) | map.revealed_tiles[idx]
+                && (player_fov.visible_tiles.contains(&pt) | map.revealed_tiles[idx])
             {
                 let tint = if player_fov.visible_tiles.contains(&pt) {
                     WHITE
                 } else {
                     DARK_GRAY
                 };
-                match map.tiles[idx] {
-                    TileType::Floor => {
-                        let glyph = theme.tile_to_render(map.tiles[idx]);
-                        draw_batch.set(pt - offset, ColorPair::new(tint, BLACK), glyph);
-                    }
-                    TileType::Wall => {
-                        let glyph = theme.tile_to_render(map.tiles[idx]);
-                        draw_batch.set(pt - offset, ColorPair::new(tint, BLACK), glyph);
-                    }
-                }
+
+                let glyph = theme.tile_to_render(map.tiles[idx]);
+                draw_batch.set(pt - offset, ColorPair::new(tint, BLACK), glyph);
             }
         }
     }
